@@ -1,0 +1,18 @@
+{
+  "chainId": 1,
+  "rewardToken": "0x0000000000000000000000000000000000000000",
+  "windowIndex": 0,
+  "rewardsToDeposit": "20",
+  "recipients": [
+    {
+      "account": "0x00b591bc2b682a0b30dd72bac9406bfa13e5d3cd",
+      "amount": "10",
+      "metadata": {
+        "amountBreakdown": {
+          "communityRewards": "5",
+          "welcomeTravelerRewards": "5"
+        }
+      }
+    }
+  ]
+}

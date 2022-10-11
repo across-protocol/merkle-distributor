@@ -1,0 +1,39 @@
+{
+  "chainId": 1,
+  "rewardToken": "0x0000000000000000000000000000000000000000",
+  "windowIndex": 0,
+  "rewardsToDeposit": "40",
+  "recipients": [
+    {
+      "account": "0x00b591bc2b682a0b30dd72bac9406bfa13e5d3cd",
+      "amount": "10",
+      "metadata": {
+        "amountBreakdown": {
+          "communityRewards": "5",
+          "welcomeTravelerRewards": "5"
+        }
+      }
+    },
+    {
+      "account": "0x00e4846e2971bb2b29cec7c9efc8fa686ae21342",
+      "amount": "20",
+      "metadata": {
+        "amountBreakdown": {
+          "communityRewards": "5",
+          "welcomeTravelerRewards": "5",
+          "earlyUserRewards": "5",
+          "liquidityProviderRewards": "5"
+        }
+      }
+    },
+    {
+      "account": "0x0156ff30a13abbe641cb17f33967eb67feafeb4e",
+      "amount": "10",
+      "metadata": {
+        "amountBreakdown": {
+          "welcomeTravelerRewards": "10"
+        }
+      }
+    }
+  ]
+}
