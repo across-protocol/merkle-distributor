@@ -6,7 +6,7 @@
     "create-tree": "ts-node ./scripts/create-tree",
     "publish-tree": "ts-node ./scripts/publish-tree",
     "lint": "eslint . --ext .ts",
-    "test": "ts-jest"
+    "test": "jest"
   },
   "repository": "https://github.com/across-protocol/merkle-distributor.git",
   "author": "Across team",

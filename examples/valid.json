@@ -1,6 +1,6 @@
 {
   "chainId": 1,
-  "rewardToken": "0x0000000000000000000000000000000000000000",
+  "rewardToken": "0x40153DdFAd90C49dbE3F5c9F96f2a5B25ec67461",
   "windowIndex": 0,
   "rewardsToDeposit": "40",
   "recipients": [

@@ -1,35 +1,41 @@
 import * as yup from "yup";
-import * as ethers from "ethers";
+import { BigNumber, constants, utils } from "ethers";
 
-const testIsAddress = {
-  name: "is-address",
-  message: "${path} is not an address",
-  test: isAddress
+const testIsNonZeroAddress = {
+  name: "is-non-zero-address",
+  message: "${path} is not a valid address",
+  test: isNonZeroAddress
 };
 
-const testIsBigNumberish = {
+const testIsPositiveBigNumberish = {
   name: "is-big-numberish",
   message: "${path} is not BigNumberish",
-  test: isBigNumberish
+  test: isPositiveBigNumberish
 };
 
-const recipientSchema = yup.object({
-  amount: yup.string().test(testIsBigNumberish).defined(),
-  account: yup.string().test(testIsAddress).defined(),
+export const recipientSchema = yup.object({
+  amount: yup.string().test(testIsPositiveBigNumberish).defined(),
+  account: yup.string().test(testIsNonZeroAddress).defined(),
   metadata: yup
     .object({
       amountBreakdown: yup
         .object({
           welcomeTravelerRewards: yup
             .string()
-            .test(testIsBigNumberish)
+            .test(testIsPositiveBigNumberish)
             .default("0"),
-          earlyUserRewards: yup.string().test(testIsBigNumberish).default("0"),
+          earlyUserRewards: yup
+            .string()
+            .test(testIsPositiveBigNumberish)
+            .default("0"),
           liquidityProviderRewards: yup
             .string()
-            .test(testIsBigNumberish)
+            .test(testIsPositiveBigNumberish)
             .default("0"),
-          communityRewards: yup.string().test(testIsBigNumberish).default("0")
+          communityRewards: yup
+            .string()
+            .test(testIsPositiveBigNumberish)
+            .default("0")
         })
         .defined()
     })
@@ -37,21 +43,28 @@ const recipientSchema = yup.object({
 });
 
 export const recipientsFileSchema = yup.object({
-  chainId: yup.number().defined(),
-  rewardToken: yup.string().test(testIsAddress).defined(),
-  windowIndex: yup.number().integer().defined(),
-  rewardsToDeposit: yup.string().test(testIsBigNumberish).defined(),
+  chainId: yup.number().integer().positive().defined(),
+  rewardToken: yup.string().test(testIsNonZeroAddress).defined(),
+  windowIndex: yup.number().integer().min(0).defined(),
+  rewardsToDeposit: yup.string().test(testIsPositiveBigNumberish).defined(),
   recipients: yup.array().of(recipientSchema).defined()
 });
 
-function isAddress(value?: string) {
-  return value ? ethers.utils.isAddress(value) : false;
+function isNonZeroAddress(value?: string) {
+  if (!value) {
+    return false;
+  }
+
+  return utils.isAddress(value) ? value !== constants.AddressZero : false;
 }
 
-function isBigNumberish(value?: string) {
+function isPositiveBigNumberish(value?: string) {
   try {
-    ethers.BigNumber.from(value);
-    return true;
+    // check if number is represented in scientific notation, e.g. 1e+18
+    if (value?.toString().includes("e")) {
+      return false;
+    }
+    return BigNumber.from(value).gte(0);
   } catch (error) {
     return false;
   }
