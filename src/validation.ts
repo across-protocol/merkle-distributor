@@ -1,17 +1,9 @@
 import { BigNumber, BigNumberish, utils } from "ethers";
+import { InferType } from "yup";
 
-type Recipient = {
-  amount: string;
-  account: string;
-  metadata: {
-    amountBreakdown: {
-      welcomeTravelerRewards: string;
-      earlyUserRewards: string;
-      liquidityProviderRewards: string;
-      communityRewards: string;
-    };
-  };
-};
+import { recipientSchema } from "./schemas";
+
+type Recipient = InferType<typeof recipientSchema>;
 
 export function checkRecipientAmountsAndDuplicates(
   recipients: Recipient[],
