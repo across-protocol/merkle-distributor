@@ -50,7 +50,15 @@ async function main() {
       validInputFile.windowIndex
     );
 
-  const outputFilePath = `${process.cwd()}/output.json`;
+  const outputDirPath = `${process.cwd()}/generated`;
+
+  if (!fs.existsSync(outputDirPath)) {
+    fs.mkdirSync(outputDirPath);
+  }
+
+  const outputFilePath = `${outputDirPath}/${Date.now()}-${
+    validInputFile.windowIndex
+  }-tree.json`;
   const outputFile = {
     chainId: validInputFile.chainId,
     rewardToken: validInputFile.rewardToken,
