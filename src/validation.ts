@@ -9,15 +9,15 @@ export function checkRecipientAmountsAndDuplicates(
   recipients: Recipient[],
   totalRewardsToDeposit: BigNumberish
 ) {
-  const checkedRecipients: Recipient[] = [];
+  const checkedRecipientAddresses: Set<string> = new Set();
   let amountSum = BigNumber.from(0);
 
   for (const [i, recipient] of recipients.entries()) {
     checkRecipientAmount(recipient, i);
-    checkRecipientUniqueness(recipient, i, checkedRecipients);
+    checkRecipientUniqueness(recipient, i, checkedRecipientAddresses);
 
     amountSum = amountSum.add(recipient.amount);
-    checkedRecipients.push(recipient);
+    checkedRecipientAddresses.add(utils.getAddress(recipient.account));
   }
 
   if (!amountSum.eq(totalRewardsToDeposit)) {
@@ -50,15 +50,12 @@ function checkRecipientAmount(recipient: Recipient, index: number) {
 function checkRecipientUniqueness(
   recipient: Recipient,
   index: number,
-  checkedRecipients: Recipient[]
+  checkedRecipientAddresses: Set<string>
 ) {
   const recipientAddress = utils.getAddress(recipient.account);
-  const duplicateIndex = checkedRecipients.findIndex(
-    (r) => utils.getAddress(r.account) === recipientAddress
-  );
-  if (duplicateIndex > -1) {
+  if (checkedRecipientAddresses.has(recipientAddress)) {
     throw new Error(
-      `Recipient ${recipient.account} at index ${index} is a duplicate of recipient at index ${duplicateIndex}`
+      `Recipient ${recipient.account} at index ${index} is a duplicate`
     );
   }
 }

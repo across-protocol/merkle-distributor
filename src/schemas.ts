@@ -60,10 +60,6 @@ function isNonZeroAddress(value?: string) {
 
 function isPositiveBigNumberish(value?: string) {
   try {
-    // check if number is represented in scientific notation, e.g. 1e+18
-    if (value?.toString().includes("e")) {
-      return false;
-    }
     return BigNumber.from(value).gte(0);
   } catch (error) {
     return false;
