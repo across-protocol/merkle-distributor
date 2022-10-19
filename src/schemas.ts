@@ -13,6 +13,12 @@ const testIsPositiveBigNumberish = {
   test: isPositiveBigNumberish
 };
 
+const testIsBytes32HexString = {
+  name: "is-bytes-32-hex",
+  message: "${path} is not a valid bytes32 hex string",
+  test: isBytes32HexString
+};
+
 export const recipientSchema = yup.object({
   amount: yup.string().test(testIsPositiveBigNumberish).defined(),
   account: yup.string().test(testIsNonZeroAddress).defined(),
@@ -42,13 +48,33 @@ export const recipientSchema = yup.object({
     .defined()
 });
 
-export const recipientsFileSchema = yup.object({
+export const recipientWithProofSchema = recipientSchema.concat(
+  yup.object({
+    accountIndex: yup.number().integer().min(0).defined(),
+    windowIndex: yup.number().integer().min(0).defined(),
+    proof: yup.array().of(yup.string().test(testIsBytes32HexString)).defined()
+  })
+);
+
+const baseInputFileSchema = yup.object({
   chainId: yup.number().integer().positive().defined(),
   rewardToken: yup.string().test(testIsNonZeroAddress).defined(),
   windowIndex: yup.number().integer().min(0).defined(),
-  rewardsToDeposit: yup.string().test(testIsPositiveBigNumberish).defined(),
-  recipients: yup.array().of(recipientSchema).defined()
+  rewardsToDeposit: yup.string().test(testIsPositiveBigNumberish).defined()
 });
+
+export const recipientsFileSchema = baseInputFileSchema.concat(
+  yup.object({
+    recipients: yup.array().of(recipientSchema).defined()
+  })
+);
+
+export const treeFileSchema = baseInputFileSchema.concat(
+  yup.object({
+    merkleRoot: yup.string().test(testIsBytes32HexString).defined(),
+    recipientsWithProofs: yup.array().of(recipientWithProofSchema).defined()
+  })
+);
 
 function isNonZeroAddress(value?: string) {
   if (!value) {
@@ -64,4 +90,8 @@ function isPositiveBigNumberish(value?: string) {
   } catch (error) {
     return false;
   }
+}
+
+function isBytes32HexString(value?: string) {
+  return utils.isHexString(value, 32);
 }
