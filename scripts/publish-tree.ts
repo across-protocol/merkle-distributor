@@ -71,7 +71,6 @@ async function main() {
       }
     }
   );
-  console.log(data);
 
   const outputFileName = inputFileName.replace(".json", "_published.json");
   const outputFilePath = writeToOutput(outputFileName, {
@@ -88,7 +87,7 @@ async function main() {
     const form = new FormData();
     form.append("file", fs.createReadStream(outputFilePath));
     const { scraperApiJwt, scraperApiUrl } = assertAndGetScraperEnvVars();
-    const { data } = await axios.post(
+    await axios.post(
       `${scraperApiUrl}/upload/merkle-distributor-recipients`,
       form,
       {
@@ -98,7 +97,6 @@ async function main() {
         }
       }
     );
-    console.log(data);
   }
 }
 
