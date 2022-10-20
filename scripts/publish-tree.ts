@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import axios from "axios";
 import FormData from "form-data";
 import fs from "fs";
+import path from "path";
 
 import { parseInputFile, writeToOutput } from "../src/fs-utils";
 import {
@@ -38,7 +39,7 @@ async function main() {
     // schemas with dynamic keys and type inference
     recipientsWithProofs: Object.values(rawInputFile.recipientsWithProofs)
   };
-  const inputFileName = options.input.split("/").at(-1) as string;
+  const inputFileName = path.basename(options.input, ".json");
 
   console.log("\n1. Validating input file...");
   const validInputFile = treeFileSchema.validateSync(inputFile, {
@@ -72,7 +73,7 @@ async function main() {
     }
   );
 
-  const outputFileName = inputFileName.replace(".json", "_published.json");
+  const outputFileName = `${inputFileName}_published.json`;
   const outputFilePath = writeToOutput(outputFileName, {
     ipfsHash: data.IpfsHash,
     ...rawInputFile
