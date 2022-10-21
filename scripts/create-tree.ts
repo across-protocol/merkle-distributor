@@ -1,8 +1,8 @@
 import { program } from "commander";
-import fs from "fs";
 import { utils } from "ethers";
 import * as sdk from "@across-protocol/sdk-v2";
 
+import { parseInputFile, writeToOutput } from "../src/fs-utils";
 import { recipientsFileSchema } from "../src/schemas";
 import { checkRecipientAmountsAndDuplicates } from "../src/validation";
 
@@ -20,13 +20,7 @@ async function main() {
 
   console.log(`Creating a merkle tree and proofs for ${options.input}...`);
 
-  if (!fs.existsSync(options.input)) {
-    throw new Error(`File ${options.input} does not exist`);
-  }
-
-  const inputFile = JSON.parse(
-    fs.readFileSync(options.input, { encoding: "utf8" })
-  );
+  const inputFile = parseInputFile(options.input);
 
   console.log("\n1. Validating input file...");
   const validInputFile = recipientsFileSchema.validateSync(inputFile, {
@@ -50,16 +44,7 @@ async function main() {
       validInputFile.windowIndex
     );
 
-  const outputDirPath = `${process.cwd()}/generated`;
-
-  if (!fs.existsSync(outputDirPath)) {
-    fs.mkdirSync(outputDirPath);
-  }
-
-  const outputFilePath = `${outputDirPath}/${Date.now()}-${
-    validInputFile.windowIndex
-  }-tree.json`;
-  const outputFile = {
+  const outputFileContent = {
     chainId: validInputFile.chainId,
     rewardToken: validInputFile.rewardToken,
     windowIndex: validInputFile.windowIndex,
@@ -67,7 +52,10 @@ async function main() {
     merkleRoot,
     recipientsWithProofs
   };
-  fs.writeFileSync(outputFilePath, JSON.stringify(outputFile, null, 2));
+  const outputFilePath = writeToOutput(
+    `${Date.now()}-${validInputFile.windowIndex}-tree.json`,
+    outputFileContent
+  );
   console.log(`\n4. Saved to ${outputFilePath}`);
 }
 

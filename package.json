@@ -26,7 +26,9 @@
   },
   "dependencies": {
     "@across-protocol/sdk-v2": "^0.1.28",
+    "axios": "^1.1.2",
     "commander": "^9.4.1",
+    "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
     "yup": "^1.0.0-beta.7"
   }

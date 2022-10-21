@@ -4,3 +4,6 @@ dist
 /node_modules
 yarn-error.log
 /generated
+.env
+.env.*
+!.env.example

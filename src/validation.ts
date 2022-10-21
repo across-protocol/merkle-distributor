@@ -1,10 +1,28 @@
 import { BigNumber, BigNumberish, utils } from "ethers";
 import { InferType } from "yup";
+import assert from "assert";
 
 import { recipientSchema } from "./schemas";
 
 type Recipient = InferType<typeof recipientSchema>;
 
+export function assertAndGetPinataEnvVars() {
+  assert(process.env.PINATA_JWT, "Env var PINATA_JWT missing");
+
+  return {
+    pinataJwt: process.env.PINATA_JWT
+  };
+}
+
+export function assertAndGetScraperEnvVars() {
+  assert(process.env.SCRAPER_API_URL, "Env var SCRAPER_API_URL missing");
+  assert(process.env.SCRAPER_API_JWT, "Env var SCRAPER_API_JWT missing");
+
+  return {
+    scraperApiUrl: process.env.SCRAPER_API_URL,
+    scraperApiJwt: process.env.SCRAPER_API_JWT
+  };
+}
 export function checkRecipientAmountsAndDuplicates(
   recipients: Recipient[],
   totalRewardsToDeposit: BigNumberish
