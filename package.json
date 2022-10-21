@@ -2,11 +2,13 @@
   "name": "merkle-distributor",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "create-tree": "ts-node ./scripts/create-tree",
     "publish-tree": "ts-node ./scripts/publish-tree",
+    "set-root": "ts-node ./scripts/set-root",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": "https://github.com/across-protocol/merkle-distributor.git",
   "author": "Across team",
@@ -25,11 +27,13 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@across-protocol/contracts-v2": "^1.0.4",
     "@across-protocol/sdk-v2": "^0.1.28",
     "axios": "^1.1.2",
     "commander": "^9.4.1",
     "dotenv": "^16.0.3",
     "ethers": "^5.7.1",
+    "multiformats": "^10.0.2",
     "yup": "^1.0.0-beta.7"
   }
 }

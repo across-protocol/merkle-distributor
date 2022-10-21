@@ -52,10 +52,21 @@ Options:
 
 ### Set Merkle Root / Window
 
+To publish set a new root and window in the `MerkleDistributor`, you need to set the respective env vars in an `.env` file.
+Use the example file as a template by running
+
+```bash
+cp .env.example .env
+```
+
+and set the respective values. Afterward you can run the script below.
+
 ```
 Usage: yarn set-root [options]
 
 Options:
-  -i, --input <path>  input JSON file location containing output of 'yarn create-tree'
-  -h, --help          display help for command
+  -i, --input <path>       input JSON file location containing output of 'yarn publish-tree'
+  -a, --address <address>  contract address of MerkleDistributor contract
+  -w, --wait <blocks>      number of confirmations to wait (default: "1")
+  -h, --help               display help for command
 ```
