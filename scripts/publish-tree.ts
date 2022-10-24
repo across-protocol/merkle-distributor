@@ -23,7 +23,7 @@ program
   .option(
     "-ss, --skip-scraper",
     "optional flag whether to skip scraper api upload",
-    true // TODO: set to false if Scraper API endpoint ready
+    false
   )
   .parse(process.argv);
 
@@ -89,7 +89,7 @@ async function main() {
     form.append("file", fs.createReadStream(outputFilePath));
     const { scraperApiJwt, scraperApiUrl } = assertAndGetScraperEnvVars();
     await axios.post(
-      `${scraperApiUrl}/upload/merkle-distributor-recipients`,
+      `${scraperApiUrl}/airdrop/upload/merkle-distributor-recipients`,
       form,
       {
         headers: {
