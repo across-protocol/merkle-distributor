@@ -1,4 +1,11 @@
-import { BigNumber, BigNumberish, utils, Wallet } from "ethers";
+import {
+  BigNumber,
+  BigNumberish,
+  utils,
+  Wallet,
+  constants,
+  providers
+} from "ethers";
 import { InferType } from "yup";
 import assert from "assert";
 import {
@@ -31,18 +38,18 @@ export function assertAndGetScraperEnvVars() {
 }
 
 export function assertAndGetOwnerWallet() {
-  assert(process.env.INFURA_API_KEY, "Env var INFURA_API_KEY missing");
+  assert(process.env.JSON_RPC_URL, "Env var JSON_RPC_URL missing");
   assert(
     process.env.OWNER_PK || process.env.OWNER_MNEMONIC,
     "Either OWNER_PK or OWNER_MNEMONIC need to be set"
   );
+  const ownerWallet = process.env.OWNER_PK
+    ? new Wallet(process.env.OWNER_PK)
+    : Wallet.fromMnemonic(process.env.OWNER_MNEMONIC || "");
 
-  return {
-    infuraApiKey: process.env.INFURA_API_KEY,
-    ownerWallet: process.env.OWNER_PK
-      ? new Wallet(process.env.OWNER_PK)
-      : Wallet.fromMnemonic(process.env.OWNER_MNEMONIC || "")
-  };
+  return ownerWallet.connect(
+    new providers.StaticJsonRpcProvider(process.env.JSON_RPC_URL)
+  );
 }
 
 export async function ensureApprovedTokens(
@@ -59,7 +66,7 @@ export async function ensureApprovedTokens(
     console.log("Signer doesn't have enough approved tokens. Approving...");
     const tx = await expandedERC20.approve(
       merkleDistributorAddress,
-      publishedTreeFile.rewardsToDeposit
+      constants.MaxUint256
     );
     console.log(`Tx hash: ${tx.hash}`);
     await tx.wait(wait);

@@ -1,6 +1,6 @@
 import { program } from "commander";
 import dotenv from "dotenv";
-import { providers, utils } from "ethers";
+import { utils } from "ethers";
 import {
   MerkleDistributor__factory,
   ExpandedERC20__factory,
@@ -59,15 +59,11 @@ async function main() {
   );
 
   console.log("\n3. Checking reward token contract...");
-  const { ownerWallet, infuraApiKey } = assertAndGetOwnerWallet();
-  const provider = new providers.InfuraProvider(
-    validInputFile.chainId,
-    infuraApiKey
-  );
+  const ownerWallet = assertAndGetOwnerWallet();
 
   const rewardToken = ExpandedERC20__factory.connect(
     validInputFile.rewardToken,
-    ownerWallet.connect(provider)
+    ownerWallet
   );
   await ensureApprovedTokens(
     rewardToken,
@@ -79,7 +75,7 @@ async function main() {
   console.log("\n4. Checking merkle distributor contract...");
   const merkleDistributor = MerkleDistributor__factory.connect(
     merkleDistributorAddress,
-    ownerWallet.connect(provider)
+    ownerWallet
   );
   await checkMerkleDistributor(merkleDistributor, validInputFile);
 

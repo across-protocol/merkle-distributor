@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { BigNumber, constants, utils } from "ethers";
-import * as cid from "multiformats";
+import { CID } from "multiformats/cid";
 
 const testIsNonZeroAddress = {
   name: "is-non-zero-address",
@@ -116,7 +116,7 @@ function isCID(value?: string) {
     if (!value) {
       return false;
     }
-    cid.CID.parse(value);
+    CID.parse(value);
     return true;
   } catch (error) {
     return false;
