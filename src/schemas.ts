@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { BigNumber, constants, utils } from "ethers";
+import { CID } from "multiformats/cid";
 
 const testIsNonZeroAddress = {
   name: "is-non-zero-address",
@@ -17,6 +18,12 @@ const testIsBytes32HexString = {
   name: "is-bytes-32-hex",
   message: "${path} is not a valid bytes32 hex string",
   test: isBytes32HexString
+};
+
+const testIsCID = {
+  name: "is-ipfs-cid",
+  message: "${path} is not a valid IPFS CID",
+  test: isCID
 };
 
 export const recipientSchema = yup.object({
@@ -76,6 +83,14 @@ export const treeFileSchema = baseInputFileSchema.concat(
   })
 );
 
+export const publishedTreeFileSchema = treeFileSchema.concat(
+  yup.object({
+    ipfsHash: yup.string().test(testIsCID).defined(),
+    merkleRoot: yup.string().test(testIsBytes32HexString).defined(),
+    recipientsWithProofs: yup.array().of(recipientWithProofSchema).defined()
+  })
+);
+
 function isNonZeroAddress(value?: string) {
   if (!value) {
     return false;
@@ -94,4 +109,16 @@ function isPositiveBigNumberish(value?: string) {
 
 function isBytes32HexString(value?: string) {
   return utils.isHexString(value, 32);
+}
+
+function isCID(value?: string) {
+  try {
+    if (!value) {
+      return false;
+    }
+    CID.parse(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }

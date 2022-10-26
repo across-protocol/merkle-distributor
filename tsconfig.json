@@ -2,9 +2,12 @@
   "extends": "@tsconfig/node16/tsconfig.json",
   "ts-node": {
     "transpileOnly": true,
-    "files": true
+    "files": true,
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   },
   "compilerOptions": {
+    "module": "ESNext",
     "strictFunctionTypes": false,
     "outDir": "build",
     "resolveJsonModule": true

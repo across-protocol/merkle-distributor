@@ -1,10 +1,23 @@
-import { BigNumber, BigNumberish, utils } from "ethers";
+import {
+  BigNumber,
+  BigNumberish,
+  utils,
+  Wallet,
+  constants,
+  providers
+} from "ethers";
 import { InferType } from "yup";
 import assert from "assert";
+import {
+  ExpandedERC20,
+  MerkleDistributor
+} from "@across-protocol/contracts-v2";
 
-import { recipientSchema } from "./schemas";
+import { recipientSchema, publishedTreeFileSchema } from "./schemas";
 
 type Recipient = InferType<typeof recipientSchema>;
+
+type PublishedTreeFile = InferType<typeof publishedTreeFileSchema>;
 
 export function assertAndGetPinataEnvVars() {
   assert(process.env.PINATA_JWT, "Env var PINATA_JWT missing");
@@ -23,6 +36,65 @@ export function assertAndGetScraperEnvVars() {
     scraperApiJwt: process.env.SCRAPER_API_JWT
   };
 }
+
+export function assertAndGetOwnerWallet() {
+  assert(process.env.JSON_RPC_URL, "Env var JSON_RPC_URL missing");
+  assert(
+    process.env.OWNER_PK || process.env.OWNER_MNEMONIC,
+    "Either OWNER_PK or OWNER_MNEMONIC need to be set"
+  );
+  const ownerWallet = process.env.OWNER_PK
+    ? new Wallet(process.env.OWNER_PK)
+    : Wallet.fromMnemonic(process.env.OWNER_MNEMONIC || "");
+
+  return ownerWallet.connect(
+    new providers.StaticJsonRpcProvider(process.env.JSON_RPC_URL)
+  );
+}
+
+export async function ensureApprovedTokens(
+  expandedERC20: ExpandedERC20,
+  merkleDistributorAddress: string,
+  publishedTreeFile: PublishedTreeFile,
+  wait = 1
+) {
+  const currentAllowance = await expandedERC20.allowance(
+    await expandedERC20.signer.getAddress(),
+    merkleDistributorAddress
+  );
+  if (currentAllowance.lt(publishedTreeFile.rewardsToDeposit)) {
+    console.log("Signer doesn't have enough approved tokens. Approving...");
+    const tx = await expandedERC20.approve(
+      merkleDistributorAddress,
+      constants.MaxUint256
+    );
+    console.log(`Tx hash: ${tx.hash}`);
+    await tx.wait(wait);
+    console.log(`Successfully mined`);
+  } else {
+    console.log("Signer has enough approved tokens");
+  }
+}
+
+export async function checkMerkleDistributor(
+  merkleDistributor: MerkleDistributor,
+  publishedTreeFile: PublishedTreeFile
+) {
+  const nextWindowIndex = await merkleDistributor.nextCreatedIndex();
+  assert(
+    nextWindowIndex.eq(publishedTreeFile.windowIndex),
+    `On-chain windowIndex '${nextWindowIndex}' must equal windowIndex from input file '${publishedTreeFile.windowIndex}'`
+  );
+
+  // checks if transaction would fail
+  await merkleDistributor.callStatic.setWindow(
+    publishedTreeFile.rewardsToDeposit,
+    publishedTreeFile.rewardToken,
+    publishedTreeFile.merkleRoot,
+    publishedTreeFile.ipfsHash
+  );
+}
+
 export function checkRecipientAmountsAndDuplicates(
   recipients: Recipient[],
   totalRewardsToDeposit: BigNumberish
