@@ -48,6 +48,10 @@ export const recipientSchema = yup.object({
           communityRewards: yup
             .string()
             .test(testIsPositiveBigNumberish)
+            .default("0"),
+          referralRewards: yup
+            .string()
+            .test(testIsPositiveBigNumberish)
             .default("0")
         })
         .defined()

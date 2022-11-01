@@ -10,7 +10,8 @@ describe("validation", () => {
           welcomeTravelerRewards: "10",
           earlyUserRewards: "0",
           liquidityProviderRewards: "0",
-          communityRewards: "0"
+          communityRewards: "0",
+          referralRewards: "0"
         }
       }
     };
@@ -22,7 +23,8 @@ describe("validation", () => {
           welcomeTravelerRewards: "10",
           earlyUserRewards: "10",
           liquidityProviderRewards: "10",
-          communityRewards: "10"
+          communityRewards: "10",
+          referralRewards: "0"
         }
       }
     };
