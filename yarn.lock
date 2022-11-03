@@ -17,17 +17,17 @@
     arb-bridge-eth "^0.7.4"
     arb-bridge-peripherals "^1.0.5"
 
-"@across-protocol/contracts-v2@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@across-protocol/contracts-v2/-/contracts-v2-1.0.4.tgz#a39d95d643d154ff48417b960f740ee04ef17b17"
-  integrity sha512-v0MDHp2kO3Yf1r5YTwUf5FQvhMD5JXZoYDWifYvHmyf7zI68NgzDL9Yvo9hFzAjYAFlrVSxhTU4pBijx+hcKLw==
+"@across-protocol/contracts-v2@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@across-protocol/contracts-v2/-/contracts-v2-1.0.7.tgz#d7eb5fc5a987dbed1f45867c05159d6f621d7977"
+  integrity sha512-e9J9ZOqT9lCMMkeDb/4oe0U/urG48Ld/HA4YbteAhBecG2+53Rvq8EC4ds7VybYX4BbUhNgc0zsuCCRE/mPaUw==
   dependencies:
     "@defi-wonderland/smock" "^2.0.7"
     "@eth-optimism/contracts" "^0.5.11"
     "@openzeppelin/contracts" "^4.7.3"
     "@uma/common" "^2.28.0"
     "@uma/contracts-node" "^0.3.18"
-    "@uma/core" "^2.38.0"
+    "@uma/core" "^2.41.0"
     "@uma/merkle-distributor" "^1.3.38"
     arb-bridge-eth "^0.7.4"
     arb-bridge-peripherals "^1.0.5"
@@ -41,17 +41,17 @@
     "@openzeppelin/contracts" "4.1.0"
     "@uma/core" "^2.18.0"
 
-"@across-protocol/sdk-v2@^0.1.28":
-  version "0.1.28"
-  resolved "https://registry.yarnpkg.com/@across-protocol/sdk-v2/-/sdk-v2-0.1.28.tgz#63312c3d9fbe28e70876f89ce0e55125148d52a0"
-  integrity sha512-rLlTE6r6DpwFSCT9HPqVIx0RiJz+6bpcRae8Jj0Si5POYMZ2hezVwxy4otrz4GYut86Gf8cXKdbWPtd5ymkpJQ==
+"@across-protocol/sdk-v2@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@across-protocol/sdk-v2/-/sdk-v2-0.1.33.tgz#f4cb44dcd8de3f8a7cef74ade5db188801b0dafe"
+  integrity sha512-XIHJZZkcG4sqUXmfrGqUrZaAy6CLeqMJ4JyuwkjMYxf1L2WxI0fht3qMT3DzzaYntmCAXLpnDm0PSTa5szk2Fg==
   dependencies:
     "@across-protocol/contracts-v2" "^1.0.3"
-    "@eth-optimism/sdk" "^1.1.4"
+    "@eth-optimism/sdk" "^1.6.0"
     "@uma/sdk" "^0.29.3"
     axios "^0.27.2"
     decimal.js "^10.3.1"
-    ethers "^5.6.1"
+    ethers "^5.7.2"
     hardhat-deploy "^0.11.2"
     hardhat-gas-reporter "^1.0.8"
     lodash.get "^4.4.2"
@@ -484,10 +484,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eth-optimism/contracts-bedrock@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@eth-optimism/contracts-bedrock/-/contracts-bedrock-0.8.0.tgz#4fd57a48ad9b5256ddfa577f262f51f16b3e39a2"
-  integrity sha512-ThgeAxxsM2vaGPrO7cGCXjAf+cn31vNSCGmZsak2sMHO5K+pVbXxGFPNgfg0LAoJNh6VVNpVPKuuy7YIxK0e8g==
+"@eth-optimism/contracts-bedrock@0.8.3":
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/@eth-optimism/contracts-bedrock/-/contracts-bedrock-0.8.3.tgz#a73302b57a61d9516abf80c136bf8298327178d5"
+  integrity sha512-GGe09aHb0ucyh9u1+xMxVs9HUPyAa4ojVARjXztAdGmliash4Kmn8o95qmCM7eQeaMMdVYKKdVk21lqekIhZ2w==
   dependencies:
     "@eth-optimism/core-utils" "^0.10.1"
     "@openzeppelin/contracts" "4.7.3"
@@ -533,13 +533,13 @@
   dependencies:
     node-fetch "^2.6.1"
 
-"@eth-optimism/sdk@^1.1.4":
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/@eth-optimism/sdk/-/sdk-1.6.6.tgz#13000ee12911a7776019c61d60693465b8aa6301"
-  integrity sha512-uxzn7GfyYSbvoTeBLJRj2Qrqa46IMXEcieHI/PNsvPXZTMzJ89efrq1XTDH+DWQq3Qf0d82IUr2tKfb+lWFbBA==
+"@eth-optimism/sdk@^1.6.0":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@eth-optimism/sdk/-/sdk-1.6.9.tgz#0ee019b910cc259d6a88d4e9be22d3a24853476a"
+  integrity sha512-hHdwvNDJZivcEnCMsuOmIHjgYNN7bT6ZlhP9BGDNaQBqeWYR52uE9bLK997uj/Ot9FLVxEAjuvoWnkwUqFCCgw==
   dependencies:
     "@eth-optimism/contracts" "0.5.37"
-    "@eth-optimism/contracts-bedrock" "0.8.0"
+    "@eth-optimism/contracts-bedrock" "0.8.3"
     "@eth-optimism/core-utils" "0.10.1"
     lodash "^4.17.21"
     merkletreejs "^0.2.27"
@@ -970,6 +970,32 @@
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/@ethersproject/providers/-/providers-5.7.1.tgz#b0799b616d5579cd1067a8ebf1fc1ec74c1e122c"
   integrity sha512-vZveG/DLyo+wk4Ga1yx6jSEHrLPgmTt+dFv0dv8URpVCRf0jVhalps1jq/emN/oXnMRsC7cQgAF32DcXLL7BPQ==
+  dependencies:
+    "@ethersproject/abstract-provider" "^5.7.0"
+    "@ethersproject/abstract-signer" "^5.7.0"
+    "@ethersproject/address" "^5.7.0"
+    "@ethersproject/base64" "^5.7.0"
+    "@ethersproject/basex" "^5.7.0"
+    "@ethersproject/bignumber" "^5.7.0"
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/constants" "^5.7.0"
+    "@ethersproject/hash" "^5.7.0"
+    "@ethersproject/logger" "^5.7.0"
+    "@ethersproject/networks" "^5.7.0"
+    "@ethersproject/properties" "^5.7.0"
+    "@ethersproject/random" "^5.7.0"
+    "@ethersproject/rlp" "^5.7.0"
+    "@ethersproject/sha2" "^5.7.0"
+    "@ethersproject/strings" "^5.7.0"
+    "@ethersproject/transactions" "^5.7.0"
+    "@ethersproject/web" "^5.7.0"
+    bech32 "1.1.4"
+    ws "7.4.6"
+
+"@ethersproject/providers@5.7.2":
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/@ethersproject/providers/-/providers-5.7.2.tgz#f8b1a4f275d7ce58cf0a2eec222269a08beb18cb"
+  integrity sha512-g34EWZ1WWAVgr4aptGlVBF8mhl3VWjv+8hoAnzStu8Ah22VHBsuGzP17eb6xDVRzw895G4W7vvx60lFFur/1Rg==
   dependencies:
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
@@ -2890,6 +2916,22 @@
   version "2.38.0"
   resolved "https://registry.yarnpkg.com/@uma/core/-/core-2.38.0.tgz#67e1d246509a663a0703b70666e78f4ec410183f"
   integrity sha512-Vb1CU8YsXBS71DHoKMYnWk3/NVeU3lhoT8D/s5b1OraOLr1MOToXAJpT0IEGA+fvpchwRFpN0qY5gMUY8MhkBg==
+  dependencies:
+    "@gnosis.pm/safe-contracts" "^1.3.0"
+    "@gnosis.pm/zodiac" "1.0.3"
+    "@maticnetwork/fx-portal" "^1.0.4"
+    "@openzeppelin/contracts" "4.4.2"
+    "@uma/common" "^2.28.0"
+    "@uniswap/lib" "4.0.1-alpha"
+    "@uniswap/v2-core" "1.0.0"
+    "@uniswap/v2-periphery" "1.1.0-beta.0"
+    "@uniswap/v3-core" "^1.0.0-rc.2"
+    "@uniswap/v3-periphery" "^1.0.0-beta.23"
+
+"@uma/core@^2.41.0":
+  version "2.41.0"
+  resolved "https://registry.yarnpkg.com/@uma/core/-/core-2.41.0.tgz#1a571c354b93745ab0353ec8bc98d14b4089e31f"
+  integrity sha512-k/KbZZJefO17JSEa7dJ6cYP6RwBsVPuR7fonjG+EUrGBBJJl/XL/M4GeIPcKpxpuVBCcI6QcmjW3Whwsapp62A==
   dependencies:
     "@gnosis.pm/safe-contracts" "^1.3.0"
     "@gnosis.pm/zodiac" "1.0.3"
@@ -6504,7 +6546,7 @@ ethers@^4.0.32, ethers@^4.0.40:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-ethers@^5.0.13, ethers@^5.4.2, ethers@^5.4.6, ethers@^5.5.3, ethers@^5.6.1, ethers@^5.7.0, ethers@^5.7.1:
+ethers@^5.0.13, ethers@^5.4.2, ethers@^5.4.6, ethers@^5.5.3, ethers@^5.7.0, ethers@^5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.1.tgz#48c83a44900b5f006eb2f65d3ba6277047fd4f33"
   integrity sha512-5krze4dRLITX7FpU8J4WscXqADiKmyeNlylmmDLbS95DaZpBhDe2YSwRQwKXWNyXcox7a3gBgm/MkGXV1O1S/Q==
@@ -6528,6 +6570,42 @@ ethers@^5.0.13, ethers@^5.4.2, ethers@^5.4.6, ethers@^5.5.3, ethers@^5.6.1, ethe
     "@ethersproject/pbkdf2" "5.7.0"
     "@ethersproject/properties" "5.7.0"
     "@ethersproject/providers" "5.7.1"
+    "@ethersproject/random" "5.7.0"
+    "@ethersproject/rlp" "5.7.0"
+    "@ethersproject/sha2" "5.7.0"
+    "@ethersproject/signing-key" "5.7.0"
+    "@ethersproject/solidity" "5.7.0"
+    "@ethersproject/strings" "5.7.0"
+    "@ethersproject/transactions" "5.7.0"
+    "@ethersproject/units" "5.7.0"
+    "@ethersproject/wallet" "5.7.0"
+    "@ethersproject/web" "5.7.1"
+    "@ethersproject/wordlists" "5.7.0"
+
+ethers@^5.7.2:
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
+  integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
+  dependencies:
+    "@ethersproject/abi" "5.7.0"
+    "@ethersproject/abstract-provider" "5.7.0"
+    "@ethersproject/abstract-signer" "5.7.0"
+    "@ethersproject/address" "5.7.0"
+    "@ethersproject/base64" "5.7.0"
+    "@ethersproject/basex" "5.7.0"
+    "@ethersproject/bignumber" "5.7.0"
+    "@ethersproject/bytes" "5.7.0"
+    "@ethersproject/constants" "5.7.0"
+    "@ethersproject/contracts" "5.7.0"
+    "@ethersproject/hash" "5.7.0"
+    "@ethersproject/hdnode" "5.7.0"
+    "@ethersproject/json-wallets" "5.7.0"
+    "@ethersproject/keccak256" "5.7.0"
+    "@ethersproject/logger" "5.7.0"
+    "@ethersproject/networks" "5.7.1"
+    "@ethersproject/pbkdf2" "5.7.0"
+    "@ethersproject/properties" "5.7.0"
+    "@ethersproject/providers" "5.7.2"
     "@ethersproject/random" "5.7.0"
     "@ethersproject/rlp" "5.7.0"
     "@ethersproject/sha2" "5.7.0"

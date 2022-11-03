@@ -2,7 +2,7 @@ import { program } from "commander";
 import dotenv from "dotenv";
 import { utils } from "ethers";
 import {
-  MerkleDistributor__factory,
+  AcrossMerkleDistributor__factory,
   ExpandedERC20__factory,
   getDeployedAddress
 } from "@across-protocol/contracts-v2";
@@ -49,7 +49,7 @@ async function main() {
   });
   const merkleDistributorAddress = utils.isAddress(options.address)
     ? (options.address as string)
-    : getDeployedAddress("MerkleDistributor", validInputFile.chainId);
+    : getDeployedAddress("AcrossMerkleDistributor", validInputFile.chainId);
   const waitBlocks = Number(options.wait);
 
   console.log("\n2. Checking recipient amounts and duplicates...");
@@ -73,7 +73,7 @@ async function main() {
   );
 
   console.log("\n4. Checking merkle distributor contract...");
-  const merkleDistributor = MerkleDistributor__factory.connect(
+  const merkleDistributor = AcrossMerkleDistributor__factory.connect(
     merkleDistributorAddress,
     ownerWallet
   );

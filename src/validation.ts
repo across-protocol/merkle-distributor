@@ -10,7 +10,7 @@ import { InferType } from "yup";
 import assert from "assert";
 import {
   ExpandedERC20,
-  MerkleDistributor
+  AcrossMerkleDistributor
 } from "@across-protocol/contracts-v2";
 
 import { recipientSchema, publishedTreeFileSchema } from "./schemas";
@@ -77,7 +77,7 @@ export async function ensureApprovedTokens(
 }
 
 export async function checkMerkleDistributor(
-  merkleDistributor: MerkleDistributor,
+  merkleDistributor: AcrossMerkleDistributor,
   publishedTreeFile: PublishedTreeFile
 ) {
   const nextWindowIndex = await merkleDistributor.nextCreatedIndex();
