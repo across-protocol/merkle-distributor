@@ -46,6 +46,7 @@ async function main() {
 
   const outputFileContent = {
     chainId: validInputFile.chainId,
+    contractAddress: validInputFile.contractAddress,
     rewardToken: validInputFile.rewardToken,
     windowIndex: validInputFile.windowIndex,
     rewardsToDeposit: validInputFile.rewardsToDeposit,
