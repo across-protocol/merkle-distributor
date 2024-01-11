@@ -52,6 +52,10 @@ export const recipientSchema = yup.object({
           referralRewards: yup
             .string()
             .test(testIsPositiveBigNumberish)
+            .default("0"),
+          opRewards: yup
+            .string()
+            .test(testIsPositiveBigNumberish)
             .default("0")
         })
         .defined()
@@ -69,6 +73,7 @@ export const recipientWithProofSchema = recipientSchema.concat(
 
 const baseInputFileSchema = yup.object({
   chainId: yup.number().integer().positive().defined(),
+  contractAddress: yup.string().test(testIsNonZeroAddress).defined(),
   rewardToken: yup.string().test(testIsNonZeroAddress).defined(),
   windowIndex: yup.number().integer().min(0).defined(),
   rewardsToDeposit: yup.string().test(testIsPositiveBigNumberish).defined()
