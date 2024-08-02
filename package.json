@@ -4,9 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "create-tree": "ts-node ./scripts/create-tree",
-    "publish-tree": "ts-node ./scripts/publish-tree",
-    "set-root": "ts-node ./scripts/set-root",
+    "create-tree": "ts-node ./scripts/create-tree.ts",
+    "publish-tree": "ts-node ./scripts/publish-tree.ts",
+    "set-root": "ts-node ./scripts/set-root.ts",
     "lint": "eslint . --ext .ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
