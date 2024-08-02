@@ -56,6 +56,10 @@ export const recipientSchema = yup.object({
           opRewards: yup
             .string()
             .test(testIsPositiveBigNumberish)
+            .default("0"),
+          arbRewards: yup
+            .string()
+            .test(testIsPositiveBigNumberish)
             .default("0")
         })
         .defined()

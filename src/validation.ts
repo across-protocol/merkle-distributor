@@ -125,6 +125,7 @@ function checkRecipientAmount(recipient: Recipient, index: number) {
     communityRewards,
     referralRewards,
     opRewards,
+    arbRewards,
   } = recipient.metadata.amountBreakdown;
 
   const amountBreakdownSum = BigNumber.from(welcomeTravelerRewards)
@@ -132,7 +133,8 @@ function checkRecipientAmount(recipient: Recipient, index: number) {
     .add(liquidityProviderRewards)
     .add(communityRewards)
     .add(referralRewards)
-    .add(opRewards);
+    .add(opRewards)
+    .add(arbRewards);
 
   if (!amountBreakdownSum.eq(recipient.amount)) {
     throw new Error(
