@@ -33,36 +33,17 @@ export const recipientSchema = yup.object({
     .object({
       amountBreakdown: yup
         .object({
-          welcomeTravelerRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          earlyUserRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
+          welcomeTravelerRewards: yup.string().test(testIsPositiveBigNumberish),
+          earlyUserRewards: yup.string().test(testIsPositiveBigNumberish),
           liquidityProviderRewards: yup
             .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          communityRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          referralRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          opRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          arbRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0")
+            .test(testIsPositiveBigNumberish),
+          communityRewards: yup.string().test(testIsPositiveBigNumberish),
+          referralRewards: yup.string().test(testIsPositiveBigNumberish),
+          opRewards: yup.string().test(testIsPositiveBigNumberish),
+          arbRewards: yup.string().test(testIsPositiveBigNumberish)
         })
-        .defined()
+        .notRequired()
     })
     .defined()
 });

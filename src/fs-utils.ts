@@ -19,7 +19,7 @@ export function writeToOutput(
   }
 
   const outputFilePath = `${outputDirPath}/${outputFileName}`;
-  fs.writeFileSync(outputFilePath, JSON.stringify(outputFileContent, null, 2));
+  fs.writeFileSync(outputFilePath, JSON.stringify(outputFileContent));
 
   return outputFilePath;
 }

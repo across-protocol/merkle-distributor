@@ -55,7 +55,7 @@ async function main() {
   console.log("\n3. Store on IPFS...");
   const { pinataJwt } = assertAndGetPinataEnvVars();
   const form = new FormData();
-  form.append('file', fs.createReadStream(options.input));
+  form.append("file", fs.createReadStream(options.input));
 
   const { data } = await axios.post(
     "https://api.pinata.cloud/pinning/pinFileToIPFS",
@@ -63,7 +63,7 @@ async function main() {
     {
       headers: {
         ...form.getHeaders(),
-        'Content-Type': `multipart/form-data; boundary=${form.getBoundary()}`,
+        "Content-Type": `multipart/form-data; boundary=${form.getBoundary()}`,
         Authorization: `Bearer ${pinataJwt}`
       }
     }
