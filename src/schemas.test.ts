@@ -28,6 +28,7 @@ const validRecipientWithProof = {
 };
 const validRecipientsFile = {
   chainId: 1,
+  contractAddress: "0x9f6Cb0A37F1ae91b8e65405f525A596bAFC5A9a6",
   rewardToken: nonZeroAddress,
   windowIndex: 0,
   rewardsToDeposit: "10",
