@@ -1,5 +1,6 @@
 {
   "chainId": 1,
+  "contractAddress": "0x9f6Cb0A37F1ae91b8e65405f525A596bAFC5A9a6",
   "rewardToken": "0x40153DdFAd90C49dbE3F5c9F96f2a5B25ec67461",
   "windowIndex": 0,
   "rewardsToDeposit": "20",

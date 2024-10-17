@@ -43,9 +43,7 @@ export const recipientSchema = yup.object({
           opRewards: yup.string().test(testIsPositiveBigNumberish),
           arbRewards: yup.string().test(testIsPositiveBigNumberish)
         })
-        .notRequired()
-    })
-    .defined()
+    }).default(undefined)
 });
 
 export const recipientWithProofSchema = recipientSchema.concat(
@@ -95,6 +93,7 @@ function isNonZeroAddress(value?: string) {
 
 function isPositiveBigNumberish(value?: string) {
   try {
+    if (!value) return true // Needed when value is optional
     return BigNumber.from(value).gte(0);
   } catch (error) {
     return false;

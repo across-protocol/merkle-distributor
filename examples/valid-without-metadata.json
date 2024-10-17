@@ -1,0 +1,22 @@
+{
+    "chainId": 1,
+    "contractAddress": "0x9f6Cb0A37F1ae91b8e65405f525A596bAFC5A9a6",
+    "rewardToken": "0x40153DdFAd90C49dbE3F5c9F96f2a5B25ec67461",
+    "windowIndex": 0,
+    "rewardsToDeposit": "40",
+    "recipients": [
+      {
+        "account": "0x00b591bc2b682a0b30dd72bac9406bfa13e5d3cd",
+        "amount": "10"
+      },
+      {
+        "account": "0x00e4846e2971bb2b29cec7c9efc8fa686ae21342",
+        "amount": "20"
+      },
+      {
+        "account": "0x0156ff30a13abbe641cb17f33967eb67feafeb4e",
+        "amount": "10"
+      }
+    ]
+  }
+  

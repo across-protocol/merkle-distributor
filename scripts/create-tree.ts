@@ -44,11 +44,6 @@ async function main() {
       validInputFile.windowIndex
     );
 
-  // Remove metadata object to reduce output file size
-  Object.values(recipientsWithProofs).forEach(
-    (recipientData) => (recipientData.metadata = {})
-  );
-
   const outputFileContent = {
     chainId: validInputFile.chainId,
     contractAddress: validInputFile.contractAddress,
