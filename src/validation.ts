@@ -103,7 +103,6 @@ export function checkRecipientAmountsAndDuplicates(
   let amountSum = BigNumber.from(0);
 
   for (const [i, recipient] of recipients.entries()) {
-    checkRecipientAmount(recipient, i);
     checkRecipientUniqueness(recipient, i, checkedRecipientAddresses);
 
     amountSum = amountSum.add(recipient.amount);
@@ -114,20 +113,6 @@ export function checkRecipientAmountsAndDuplicates(
     throw new Error(
       `Total rewards deposit ${totalRewardsToDeposit} does not equal sum of recipient amounts ${amountSum}`
     );
-  }
-}
-
-function checkRecipientAmount(recipient: Recipient, index: number) {
-  const amountBreakdown = recipient.metadata?.amountBreakdown
-  if (amountBreakdown){
-      const amountBreakdownSum = Object.values(
-      amountBreakdown
-    ).reduce((amountAcc, reward) => amountAcc.add(reward), BigNumber.from(0));
-    if (!amountBreakdownSum.eq(recipient.amount)) {
-      throw new Error(
-        `Amount ${recipient.amount} of recipient at index ${index} does not equal amount breakdown sum ${amountBreakdownSum}`
-      );
-    }
   }
 }
 

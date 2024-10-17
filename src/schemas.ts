@@ -31,19 +31,9 @@ export const recipientSchema = yup.object({
   account: yup.string().test(testIsNonZeroAddress).defined(),
   metadata: yup
     .object({
-      amountBreakdown: yup
-        .object({
-          welcomeTravelerRewards: yup.string().test(testIsPositiveBigNumberish),
-          earlyUserRewards: yup.string().test(testIsPositiveBigNumberish),
-          liquidityProviderRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish),
-          communityRewards: yup.string().test(testIsPositiveBigNumberish),
-          referralRewards: yup.string().test(testIsPositiveBigNumberish),
-          opRewards: yup.string().test(testIsPositiveBigNumberish),
-          arbRewards: yup.string().test(testIsPositiveBigNumberish)
-        })
-    }).default(undefined)
+      amountBreakdown: yup.object({})
+    })
+    .default(undefined)
 });
 
 export const recipientWithProofSchema = recipientSchema.concat(
@@ -93,7 +83,7 @@ function isNonZeroAddress(value?: string) {
 
 function isPositiveBigNumberish(value?: string) {
   try {
-    if (!value) return true // Needed when value is optional
+    if (!value) return true; // Needed when value is optional
     return BigNumber.from(value).gte(0);
   } catch (error) {
     return false;
