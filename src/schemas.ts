@@ -83,7 +83,6 @@ function isNonZeroAddress(value?: string) {
 
 function isPositiveBigNumberish(value?: string) {
   try {
-    if (!value) return true; // Needed when value is optional
     return BigNumber.from(value).gte(0);
   } catch (error) {
     return false;
