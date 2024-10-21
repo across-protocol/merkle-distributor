@@ -31,40 +31,9 @@ export const recipientSchema = yup.object({
   account: yup.string().test(testIsNonZeroAddress).defined(),
   metadata: yup
     .object({
-      amountBreakdown: yup
-        .object({
-          welcomeTravelerRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          earlyUserRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          liquidityProviderRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          communityRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          referralRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          opRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0"),
-          arbRewards: yup
-            .string()
-            .test(testIsPositiveBigNumberish)
-            .default("0")
-        })
-        .defined()
+      amountBreakdown: yup.object({})
     })
-    .defined()
+    .default(undefined)
 });
 
 export const recipientWithProofSchema = recipientSchema.concat(

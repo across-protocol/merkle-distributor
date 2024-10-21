@@ -49,7 +49,7 @@ describe("validation", () => {
           ],
           recipient1.amount
         )
-      ).toThrow(/breakdown sum/);
+      ).toThrow(/does not equal sum of recipient amounts/);
     });
 
     test("throw for incorrect total amount", () => {
